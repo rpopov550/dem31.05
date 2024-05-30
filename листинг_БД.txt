@@ -1,0 +1,74 @@
+CREATE DATABASE dem;
+USE dem;
+
+-- Таблица ролей
+CREATE TABLE user_types (
+  typeId INT PRIMARY KEY AUTO_INCREMENT,
+  typeName VARCHAR(50) NOT NULL
+);
+
+-- Таблица пользователей
+CREATE TABLE users (
+  userID INT PRIMARY KEY AUTO_INCREMENT,
+  fio VARCHAR(255) NOT NULL,
+  phone VARCHAR(20),
+  login VARCHAR(50) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  rolesId INT,
+  FOREIGN KEY (rolesId) REFERENCES user_types(typeId),
+  INDEX (phone)
+);
+
+-- Таблица клиентов
+CREATE TABLE clients (
+  clientID INT PRIMARY KEY AUTO_INCREMENT,
+  fio VARCHAR(255) NOT NULL,
+  phone VARCHAR(20)
+);
+
+-- Таблица заказов
+CREATE TABLE requests (
+  requestID INT PRIMARY KEY AUTO_INCREMENT,
+  startDate DATE NOT NULL,
+  homeTechType VARCHAR(50) NOT NULL,
+  homeTechModel VARCHAR(100) NOT NULL,
+  problemDescription TEXT NOT NULL,
+  requestStatus VARCHAR(50) NOT NULL DEFAULT 'новый',
+  completionDate DATE,
+  repairParts TEXT,
+  masterID INT,
+  clientID INT,
+  FOREIGN KEY (masterID) REFERENCES users(userID),
+  FOREIGN KEY (clientID) REFERENCES clients(clientID),
+  INDEX (startDate),
+  INDEX (requestStatus)
+);
+
+-- Таблица сообщений
+CREATE TABLE comments (
+  commentID INT PRIMARY KEY AUTO_INCREMENT,
+  message TEXT NOT NULL,
+  masterID INT,
+  requestID INT,
+  FOREIGN KEY (masterID) REFERENCES users(userID),
+  FOREIGN KEY (requestID) REFERENCES requests(requestID)
+);
+
+-- Вставка данных в таблицу user_types
+INSERT INTO user_types (typeId, typeName) VALUES
+  (1, 'Менеджер'),
+  (2, 'Мастер'),
+  (3, 'Оператор'),
+  (4, 'Заказчик');
+  
+  INSERT INTO clients (fio, phone) VALUES
+  ('Иванов Иван Иванович', '123-456-7890'),
+  ('Петров Петр Петрович', '234-567-8901'),
+  ('Сидоров Сидор Сидорович', '345-678-9012'),
+  ('Кузнецов Алексей Николаевич', '456-789-0123'),
+  ('Смирнов Сергей Викторович', '567-890-1234'),
+  ('Васильев Василий Васильевич', '678-901-2345'),
+  ('Николаев Николай Николаевич', '789-012-3456'),
+  ('Федоров Федор Федорович', '890-123-4567'),
+  ('Михайлов Михаил Михайлович', '901-234-5678'),
+  ('Александров Александр Александрович', '012-345-6789');
