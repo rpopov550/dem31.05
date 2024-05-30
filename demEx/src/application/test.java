@@ -1,0 +1,19 @@
+package application;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+class test {
+
+	@Test
+	void test() {
+		
+		int[] arr= {1,2,3};
+		int res=SpecFun.spec(arr);
+		Assertions.assertEquals(res,6);
+		
+	}
+
+}

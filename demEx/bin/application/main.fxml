@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.cell.TextFieldTableCell?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RequestsController">
+    <top>
+        <ToolBar>
+            <Button text="Добавить" onAction="#handleAddRequest"/>
+            <Button text="Удалить" onAction="#handleDeleteRequest"/>
+            <Button text="Обновить" onAction="#handleUpdateRequest"/>
+        </ToolBar>
+    </top>
+    <center>
+        <TableView fx:id="requestsTable">
+            <columns>
+                <TableColumn fx:id="requestIDColumn" text="ID" prefWidth="50">
+                    <cellValueFactory><PropertyValueFactory property="requestID"/></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="startDateColumn" text="Дата начала" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="startDate"/></cellValueFactory>
+                    <cellFactory><TextFieldTableCell fx:factory="forTableColumn"/></cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="homeTechTypeColumn" text="Тип техники" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="homeTechType"/></cellValueFactory>
+                    <cellFactory><TextFieldTableCell fx:factory="forTableColumn"/></cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="homeTechModelColumn" text="Модель техники" prefWidth="150">
+                    <cellValueFactory><PropertyValueFactory property="homeTechModel"/></cellValueFactory>
+                    <cellFactory><TextFieldTableCell fx:factory="forTableColumn"/></cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="problemDescriptionColumn" text="Описание проблемы" prefWidth="200">
+                    <cellValueFactory><PropertyValueFactory property="problemDescription"/></cellValueFactory>
+                    <cellFactory><TextFieldTableCell fx:factory="forTableColumn"/></cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="requestStatusColumn" text="Статус" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="requestStatus"/></cellValueFactory>
+                    <cellFactory><TextFieldTableCell fx:factory="forTableColumn"/></cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="completionDateColumn" text="Дата завершения" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="completionDate"/></cellValueFactory>
+                    <cellFactory><TextFieldTableCell fx:factory="forTableColumn"/></cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="repairPartsColumn" text="Запчасти" prefWidth="150">
+                    <cellValueFactory><PropertyValueFactory property="repairParts"/></cellValueFactory>
+                    <cellFactory><TextFieldTableCell fx:factory="forTableColumn"/></cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="masterIDColumn" text="ID мастера" prefWidth="75">
+                    <cellValueFactory><PropertyValueFactory property="masterID"/></cellValueFactory>
+                    <cellFactory><TextFieldTableCell fx:factory="forTableColumn"/></cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="clientIDColumn" text="ID клиента" prefWidth="75">
+                    <cellValueFactory><PropertyValueFactory property="clientID"/></cellValueFactory>
+                    <cellFactory><TextFieldTableCell fx:factory="forTableColumn"/></cellFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+     <bottom>
+        <VBox spacing="5" alignment="CENTER">
+            <Label text="Добавить новый запрос"/>
+            <TextField fx:id="startDateField" promptText="Дата начала"/>
+            <TextField fx:id="homeTechTypeField" promptText="Тип техники"/>
+            <TextField fx:id="homeTechModelField" promptText="Модель техники"/>
+            <TextField fx:id="problemDescriptionField" promptText="Описание проблемы"/>
+            <TextField fx:id="requestStatusField" promptText="Статус"/>
+            <TextField fx:id="completionDateField" promptText="Дата завершения"/>
+            <TextField fx:id="repairPartsField" promptText="Запчасти"/>
+            <TextField fx:id="masterIDField" promptText="ID мастера"/>
+            <TextField fx:id="clientIDField" promptText="ID клиента"/>
+        </VBox>
+    </bottom>
+</BorderPane>
